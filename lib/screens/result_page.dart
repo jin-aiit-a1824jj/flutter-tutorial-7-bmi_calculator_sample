@@ -34,15 +34,15 @@ class ResultsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Normal',
+                    this.resultText,
                     style: kResultTextStyle,
                   ),
                   Text(
-                    '18.3',
+                    this.bmiResult,
                     style: kBMITextStyle,
                   ),
                   Text(
-                    'Your BMI result is quite low, you should eat more!',
+                    this.interpretation,
                     style: kBodyTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -52,7 +52,7 @@ class ResultsPage extends StatelessWidget {
           ),
           BottomButton(
             buttonTitle: 'RE-CALCULATE',
-            onTap: (){
+            onTap: () {
               Navigator.pop(context);
             },
           ),
@@ -60,4 +60,13 @@ class ResultsPage extends StatelessWidget {
       ),
     );
   }
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
+  ResultsPage(
+      {@required this.bmiResult,
+      @required this.resultText,
+      @required this.interpretation});
 }
