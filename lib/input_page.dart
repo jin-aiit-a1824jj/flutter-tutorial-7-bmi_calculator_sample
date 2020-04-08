@@ -21,35 +21,33 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                    child: GestureDetector(
-                      onTap: (){
-                        print('Male card was pressed!');
-                        setState(() {
-                          selectedGender = Gender.male;
-                        });
-                      },
-                      child: ReuseAbleCard(
-                  color: selectedGender == Gender.male ? activeCardColor : inActiveCardColor,
+                    child: ReuseAbleCard(
+                  color: selectedGender == Gender.male
+                      ? activeCardColor
+                      : inActiveCardColor,
                   cardChild:
-                        IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
-                ),
-                    )),
+                      IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                )),
                 Expanded(
-                    child: GestureDetector(
-                      onTap: (){
-                        print('Female card was pressed!');
-                        setState(() {
-                          selectedGender = Gender.female;
-                        });
-                      },
-                      child: ReuseAbleCard(
-                  color: selectedGender == Gender.female ? activeCardColor : inActiveCardColor,
+                    child: ReuseAbleCard(
+                  color: selectedGender == Gender.female
+                      ? activeCardColor
+                      : inActiveCardColor,
                   cardChild: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      label: 'FEMALE',
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
                   ),
-                ),
-                    )),
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                )),
               ]),
             ),
             Expanded(
@@ -72,15 +70,11 @@ class _InputPageState extends State<InputPage> {
   }
 
   Gender selectedGender;
-
 }
 
 const bottomContainerHeight = 80.0;
 const Color activeCardColor = Color(0xFF1D1E33);
 const bottomContainerColor = Color(0XFFEB1555);
-const inActiveCardColor  = Color(0xFF111333);
+const inActiveCardColor = Color(0xFF111333);
 
-enum Gender {
-  male,
-  female
-}
+enum Gender { male, female }
