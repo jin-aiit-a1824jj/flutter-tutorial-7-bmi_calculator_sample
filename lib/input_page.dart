@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
 import 'icon_content.dart';
 import 'resuable_card.dart';
 
@@ -17,14 +18,15 @@ class _InputPageState extends State<InputPage> {
           title: Text('BMI CALCULATOR SAMPEL'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
                     child: ReuseAbleCard(
                   color: selectedGender == Gender.male
-                      ? activeCardColor
-                      : inActiveCardColor,
+                      ? kActiveCardColor
+                      : kInActiveCardColor,
                   cardChild:
                       IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
                   onPress: () {
@@ -36,8 +38,8 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: ReuseAbleCard(
                   color: selectedGender == Gender.female
-                      ? activeCardColor
-                      : inActiveCardColor,
+                      ? kActiveCardColor
+                      : kInActiveCardColor,
                   cardChild: IconContent(
                     icon: FontAwesomeIcons.venus,
                     label: 'FEMALE',
@@ -51,30 +53,64 @@ class _InputPageState extends State<InputPage> {
               ]),
             ),
             Expanded(
-              child: ReuseAbleCard(color: activeCardColor),
+              child: ReuseAbleCard(
+                  color: kActiveCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('HEIGHT', style: kLabelTextStyle,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Text(
+                            '$height',
+                            style: kNumberTextStyle,
+                          ),
+                          Text(
+                            'cm',
+                            style: kLabelTextStyle,
+                          ),
+                        ],
+                      ),
+                      Slider(
+                          value: height.toDouble(),
+                          min: 120.0,
+                          max: 220.0,
+                          activeColor: Color(0xFFEB1555),
+                          inactiveColor: Color(0xFF8D8E98),
+                          onChanged: (double newValue){
+                            print(newValue);
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          }
+                      )
+                    ],
+                  ),
+              ),
             ),
             Expanded(
               child: Row(children: <Widget>[
-                Expanded(child: ReuseAbleCard(color: activeCardColor)),
-                Expanded(child: ReuseAbleCard(color: activeCardColor)),
+                Expanded(child: ReuseAbleCard(color: kActiveCardColor)),
+                Expanded(child: ReuseAbleCard(color: kActiveCardColor)),
               ]),
             ),
             Container(
-              color: bottomContainerColor,
+              color: kBottomContainerColor,
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kBottomContainerHeight,
             ),
           ],
         ));
   }
 
   Gender selectedGender;
+  int height = 180;
 }
 
-const bottomContainerHeight = 80.0;
-const Color activeCardColor = Color(0xFF1D1E33);
-const bottomContainerColor = Color(0XFFEB1555);
-const inActiveCardColor = Color(0xFF111333);
+
 
 enum Gender { male, female }
