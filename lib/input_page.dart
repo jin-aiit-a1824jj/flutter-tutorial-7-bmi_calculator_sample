@@ -17,28 +17,36 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                    child: ReuseAbleCard(color: Color(0xFF1D1E33))
+                    child: ReuseAbleCard(color: activeCardColor)
                 ),
                 Expanded(
-                    child: ReuseAbleCard(color: Color(0xFF1D1E33))
+                    child: ReuseAbleCard(color: activeCardColor)
                 ),
               ]),
             ),
             Expanded(
-              child: ReuseAbleCard(color: Color(0xFF1D1E33)),
+              child: ReuseAbleCard(color: activeCardColor),
             ),
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                    child: ReuseAbleCard(color: Color(0xFF1D1E33))
+                    child: ReuseAbleCard(color: activeCardColor)
                 ),
                 Expanded(
-                    child: ReuseAbleCard(color: Color(0xFF1D1E33))
+                    child: ReuseAbleCard(color: activeCardColor)
                 ),
-              ]),
+              ]
+              ),
+            ),
+            Container(
+              color: bottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: bottomContainerHeight,
             ),
           ],
-        ));
+        )
+    );
   }
 }
 
@@ -60,3 +68,7 @@ class ReuseAbleCard extends StatelessWidget {
   ReuseAbleCard({@required this.color});
 
 }
+
+const bottomContainerHeight = 80.0;
+const Color activeCardColor = Color(0xFF1D1E33);
+const bottomContainerColor = Color(0XFFEB1555);
