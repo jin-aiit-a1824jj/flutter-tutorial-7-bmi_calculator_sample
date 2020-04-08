@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'icon_content.dart';
+import 'resuable_card.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,11 +21,19 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                    child: ReuseAbleCard(color: activeCardColor)
-                ),
+                    child: ReuseAbleCard(
+                  color: activeCardColor,
+                  cardChild:
+                      IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
+                )),
                 Expanded(
-                    child: ReuseAbleCard(color: activeCardColor)
-                ),
+                    child: ReuseAbleCard(
+                  color: activeCardColor,
+                  cardChild: IconContent(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
+                  ),
+                )),
               ]),
             ),
             Expanded(
@@ -29,14 +41,9 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: Row(children: <Widget>[
-                Expanded(
-                    child: ReuseAbleCard(color: activeCardColor)
-                ),
-                Expanded(
-                    child: ReuseAbleCard(color: activeCardColor)
-                ),
-              ]
-              ),
+                Expanded(child: ReuseAbleCard(color: activeCardColor)),
+                Expanded(child: ReuseAbleCard(color: activeCardColor)),
+              ]),
             ),
             Container(
               color: bottomContainerColor,
@@ -45,28 +52,8 @@ class _InputPageState extends State<InputPage> {
               height: bottomContainerHeight,
             ),
           ],
-        )
-    );
+        ));
   }
-}
-
-class ReuseAbleCard extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Container(
-                      decoration: BoxDecoration(
-                          color: this.color,
-                          borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      margin: EdgeInsets.all(15.0),
-                );
-  }
-
-  final Color color;
-  ReuseAbleCard({@required this.color});
-
 }
 
 const bottomContainerHeight = 80.0;
