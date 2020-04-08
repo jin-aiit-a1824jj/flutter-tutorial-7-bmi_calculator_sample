@@ -25,11 +25,11 @@ class _InputPageState extends State<InputPage> {
                       onTap: (){
                         print('Male card was pressed!');
                         setState(() {
-                          updateColor(Gender.male);
+                          selectedGender = Gender.male;
                         });
                       },
                       child: ReuseAbleCard(
-                  color: maleCardColor,
+                  color: selectedGender == Gender.male ? activeCardColor : inActiveCardColor,
                   cardChild:
                         IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
                 ),
@@ -37,13 +37,13 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: GestureDetector(
                       onTap: (){
-                        print('Male card was pressed!');
+                        print('Female card was pressed!');
                         setState(() {
-                          updateColor(Gender.female);
+                          selectedGender = Gender.female;
                         });
                       },
                       child: ReuseAbleCard(
-                  color: femaleCardColor,
+                  color: selectedGender == Gender.female ? activeCardColor : inActiveCardColor,
                   cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
@@ -71,30 +71,7 @@ class _InputPageState extends State<InputPage> {
         ));
   }
 
-  Color maleCardColor = inActiveCardColor;
-  Color femaleCardColor = inActiveCardColor;
-
-  void updateColor(Gender selectedGender){
-
-    if (Gender.male == selectedGender) {
-      if (maleCardColor == inActiveCardColor){
-        maleCardColor = activeCardColor;
-        femaleCardColor = inActiveCardColor;
-      }else{
-        maleCardColor = inActiveCardColor;
-      }
-    }
-
-    if (Gender.female == selectedGender){
-      if (femaleCardColor == inActiveCardColor){
-        femaleCardColor = activeCardColor;
-        maleCardColor = inActiveCardColor;
-      }else{
-        femaleCardColor = inActiveCardColor;
-      }
-    }
-
-  }
+  Gender selectedGender;
 
 }
 
