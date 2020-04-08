@@ -21,19 +21,35 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                    child: ReuseAbleCard(
-                  color: activeCardColor,
+                    child: GestureDetector(
+                      onTap: (){
+                        print('Male card was pressed!');
+                        setState(() {
+                          updateColor(1);
+                        });
+                      },
+                      child: ReuseAbleCard(
+                  color: maleCardColor,
                   cardChild:
-                      IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
-                )),
+                        IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
+                ),
+                    )),
                 Expanded(
-                    child: ReuseAbleCard(
-                  color: activeCardColor,
+                    child: GestureDetector(
+                      onTap: (){
+                        print('Male card was pressed!');
+                        setState(() {
+                          updateColor(2);
+                        });
+                      },
+                      child: ReuseAbleCard(
+                  color: femaleCardColor,
                   cardChild: IconContent(
-                    icon: FontAwesomeIcons.venus,
-                    label: 'FEMALE',
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
                   ),
-                )),
+                ),
+                    )),
               ]),
             ),
             Expanded(
@@ -54,8 +70,36 @@ class _InputPageState extends State<InputPage> {
           ],
         ));
   }
+
+  Color maleCardColor = inActiveCardColor;
+  Color femaleCardColor = inActiveCardColor;
+
+  void updateColor(int gender){
+
+    if (gender == 1) {
+      if (maleCardColor == inActiveCardColor){
+        maleCardColor = activeCardColor;
+        femaleCardColor = inActiveCardColor;
+      }else{
+        maleCardColor = inActiveCardColor;
+      }
+    }
+
+    if (gender == 2){
+      if (femaleCardColor == inActiveCardColor){
+        femaleCardColor = activeCardColor;
+        maleCardColor = inActiveCardColor;
+      }else{
+        femaleCardColor = inActiveCardColor;
+      }
+    }
+
+  }
+
 }
 
 const bottomContainerHeight = 80.0;
 const Color activeCardColor = Color(0xFF1D1E33);
 const bottomContainerColor = Color(0XFFEB1555);
+
+const inActiveCardColor  = Color(0xFF111333);
